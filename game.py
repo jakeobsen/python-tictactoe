@@ -7,7 +7,7 @@ class TicTacToe:
     move = ""
     winner = ""
 
-    def printPlayField(self):
+    def printGameField(self):
         print "┌───┬───┬───┐"
         print "│ " + str(self.pos[7]) + " │ " + str(self.pos[8]) + " │ " + str(self.pos[9]) + " │"
         print "├───┼───┼───┤"
@@ -17,24 +17,24 @@ class TicTacToe:
         print "└───┴───┴───┘"
         return
 
-    def makeAMove(self):
+    def tryPerformPlayerMove(self):
         if(self.pos[self.move] == self.move):
             self.pos[self.move] = self.player
-            self.decidePlayer()
+            self.switchPlayer()
         else:
             print("Bad move, try again.")
         return
 
-    def askPlayer(self):
+    def askPlayerForMove(self):
         self.move = input("Player " + self.player + ", make a move: ")
 
-    def decidePlayer(self):
+    def switchPlayer(self):
         if(self.player == "x"):
             self.player = "o"
         else: 
             self.player = "x"
 
-    def isThereWinner(self):
+    def checkForWinner(self):
         if(self.pos[1] == self.pos[2] and self.pos[2] == self.pos[3]):
             self.winner = self.pos[1]
         elif(self.pos[4] == self.pos[5] and self.pos[5] == self.pos[6]):
@@ -54,13 +54,19 @@ class TicTacToe:
         else:
             self.winner = ""
 
-    def play(self):
-        self.printPlayField()
+    def resetGame(self):
+        self.pos = ["", 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        self.player = "x"
+        self.move = ""
+        self.winner = ""
+
+    def playGame(self):
+        self.printGameField()
         while(1):
-            self.askPlayer()
-            self.makeAMove()
-            self.printPlayField()
-            self.isThereWinner()
+            self.askPlayerForMove()
+            self.tryPerformPlayerMove()
+            self.printGameField()
+            self.checkForWinner()
             if(self.winner != ""):
                 print("Winner is " + self.winner + "!")
                 break
@@ -68,4 +74,4 @@ class TicTacToe:
 
 # Begin game execution
 game = TicTacToe()
-game.play()
+game.playGame()
