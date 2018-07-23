@@ -45,7 +45,7 @@ class TicTacToe:
             self.winner = self.pos[7]
         elif(self.pos[8] == self.pos[5] and self.pos[5] == self.pos[2]):
             self.winner = self.pos[8]
-        elif(self.pos[9] == self.pos[6] and self.pos[6] == self.pos[6]):
+        elif(self.pos[9] == self.pos[6] and self.pos[6] == self.pos[3]):
             self.winner = self.pos[9]
         elif(self.pos[7] == self.pos[5] and self.pos[5] == self.pos[3]):
             self.winner = self.pos[7]
